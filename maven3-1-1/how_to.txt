@@ -1,0 +1,1 @@
+docker build -t ubuntu_16_04_flex_maven_3_1_1 .
