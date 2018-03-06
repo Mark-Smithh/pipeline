@@ -1,2 +1,5 @@
 echo 'hello github'
-sh 'docker --version'
+
+node('master'){
+  sh 'docker --version'
+}
