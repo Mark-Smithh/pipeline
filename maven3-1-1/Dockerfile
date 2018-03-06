@@ -12,6 +12,8 @@ ADD apache-maven-3.1.1-bin.tar.gz /
 
 ADD add_flex_maven_to_bashrc.sh /
 
+RUN chmod +x /installMaven3_1_1.sh
+
 RUN /installMaven3_1_1.sh
 
 RUN /add_flex_maven_to_bashrc.sh
