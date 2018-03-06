@@ -1,2 +1,2 @@
 echo 'hello github'
-docker --version
+sh 'docker --version'
