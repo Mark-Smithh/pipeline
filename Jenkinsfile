@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'ls -al'
+                sh 'ls -al maven3-1-1'
                 sh 'mvn --version'
             }
         }
