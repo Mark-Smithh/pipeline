@@ -16,4 +16,6 @@ RUN chmod +x /installMaven3_1_1.sh
 
 RUN /installMaven3_1_1.sh
 
+RUN chmod +x /add_flex_maven_to_bashrc.sh
+
 RUN /add_flex_maven_to_bashrc.sh
