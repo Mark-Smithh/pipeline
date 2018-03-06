@@ -22,6 +22,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'ls -al'
+                sh 'mvn --version'
             }
         }
     }
