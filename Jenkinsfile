@@ -1,15 +1,15 @@
 //https://jenkins.io/doc/book/pipeline/syntax/#agent
 
-pipeline {
-    agent { dockerfile true } //RUN DOCKERFILE AT REPOSITORY ROOT
-    stages {
-        stage('Test') {
-            steps {
-                sh 'ls -al'
-            }
-        }
-    }
-}
+// pipeline {
+//     agent { dockerfile true } //RUN DOCKERFILE AT REPOSITORY ROOT
+//     stages {
+//         stage('Test') {
+//             steps {
+//                 sh 'ls -al'
+//             }
+//         }
+//     }
+// }
 
 pipeline {
   agent{
