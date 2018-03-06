@@ -12,10 +12,12 @@
 // }
 
 pipeline {
-  dockerfile {
-      dir 'maven3-1-1' //RUN DOCKER FILE IN THIS FOLDER
-      label 'DOCKER-AGENT' //USE THIS JENKINS AGENT
-  }
+  agent{
+    dockerfile {
+        dir 'maven3-1-1' //RUN DOCKER FILE IN THIS FOLDER
+        label 'DOCKER-AGENT' //USE THIS JENKINS AGENT
+      }
+    }
     stages {
         stage('Test') {
             steps {
