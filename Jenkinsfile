@@ -11,15 +11,39 @@
 //     }
 // }
 
+// pipeline {
+//   agent{
+//     dockerfile {
+//         dir 'maven3-1-1' //RUN DOCKER FILE IN THIS FOLDER
+//         label 'DOCKER-AGENT' //USE THIS JENKINS AGENT
+//       }
+//     }
+//     stages {
+//         stage('Test') {
+//             steps {
+//                 sh 'ls -al /usr/local/maven/bin'
+//                 sh '/usr/local/maven/bin/mvn --version'
+//             }
+//         }
+//     }
+// }
+
 pipeline {
-  agent{
-    dockerfile {
-        dir 'maven3-1-1' //RUN DOCKER FILE IN THIS FOLDER
-        label 'DOCKER-AGENT' //USE THIS JENKINS AGENT
-      }
-    }
+  agent none
     stages {
-        stage('Test') {
+        stage('Dockerfile 1') {
+            agent { dockerfile true } //RUN DOCKERFILE AT REPOSITORY ROOT
+            steps {
+                sh 'ls -al'
+            }
+        }
+        stage('Dockerfile 2') {
+          agent{
+            dockerfile {
+                dir 'maven3-1-1' //RUN DOCKER FILE IN THIS FOLDER
+                label 'DOCKER-AGENT' //USE THIS JENKINS AGENT
+              }
+            }
             steps {
                 sh 'ls -al /usr/local/maven/bin'
                 sh '/usr/local/maven/bin/mvn --version'
