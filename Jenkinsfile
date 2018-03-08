@@ -28,7 +28,7 @@ pipeline {
             docker { image 'maven:3.5.2' }
         }
         steps {
-            sh 'maven --version'
+            sh 'mvn --version'
         }
       }
     }
