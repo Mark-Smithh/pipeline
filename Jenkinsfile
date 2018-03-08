@@ -7,4 +7,7 @@ node('DOCKER-AGENT') {
         sh 'ls -al'
         sh 'pwd'
     }
+
+    customImage.push()
 }
+//docker pull mrdeveloper/pipeline
