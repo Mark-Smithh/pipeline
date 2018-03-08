@@ -33,7 +33,7 @@ pipeline {
         steps {
             sh 'mvn --version'
             sh 'mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=1.0 -DBUILD_NUMBER=20'
-            sh 'ls /example-springboot-service/target'
+            sh 'ls example-springboot-service/target'
         }
       }
     }
