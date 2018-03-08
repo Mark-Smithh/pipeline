@@ -9,7 +9,7 @@ node('DOCKER-AGENT') {
         sh 'pwd'
     }
 
-    customImage.push('latest')
+    customImage.push('63')
   }
 }
 //docker pull mrdeveloper/pipeline
