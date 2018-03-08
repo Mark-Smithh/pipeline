@@ -10,11 +10,11 @@ node('DOCKER-AGENT') {
       def customImage = docker.build("${docker_username_repositiry}:${tagName}")
 
       customImage.inside {
-          sh 'ls -al'
-          sh 'pwd'
+          sh 'ls -al' //run this inside the image
+          sh 'pwd' //run this inside the image
       }
-      customImage.push()
-      customImage.push('latest')
+      customImage.push() //first push tagged as tagName
+      customImage.push('latest') //second push tagged as latest
     }
   }
 }
