@@ -1,4 +1,5 @@
 node('DOCKER-AGENT') {
+  stage('Build Image'){
     checkout scm
 
     def customImage = docker.build("my-image:${env.BUILD_ID}")
@@ -8,6 +9,7 @@ node('DOCKER-AGENT') {
         sh 'pwd'
     }
 
-    customImage.push()
+    customImage.push('mrdeveloper/pipeline:1.0')
+  }
 }
 //docker pull mrdeveloper/pipeline
