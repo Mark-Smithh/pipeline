@@ -14,14 +14,14 @@
 
 pipeline {
   agent none
-    stages {
-      agent {
-          docker { image 'node:7-alpine' }
-      }
+    stages {      
       stage('Node 7 Container') {
-          steps {
-              sh 'node --version'
-          }
+        agent {
+            docker { image 'node:7-alpine' }
+        }
+        steps {
+            sh 'node --version'
+        }
       }
     }
 }
