@@ -5,6 +5,6 @@ node('DOCKER-AGENT') {
 
     customImage.inside {
         sh 'ls -al'
-        sh 'whoami'
+        sh 'pwd'
     }
 }
