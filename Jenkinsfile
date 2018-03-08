@@ -3,14 +3,15 @@ node('DOCKER-AGENT') {
     checkout scm
 
     docker.withRegistry('https://index.docker.io/v1/', 'dockerRegistry') {
-      def customImage = docker.build("mrdeveloper/pipeline:${env.BUILD_ID}")
+      def customImage = docker.build("mrdeveloper/pipeline:${env.BUILD_NUMBER}")
 
       customImage.inside {
           sh 'ls -al'
           sh 'pwd'
       }
 
-      customImage.push('63')
+      def tagName = env.BUILD_NUMBER
+      customImage.push(tagName)
     }
 }
 }
