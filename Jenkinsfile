@@ -27,7 +27,7 @@ pipeline {
         agent {
           docker {
             image 'maven:3.5.2'
-            args '-v /var/jenkins_home/maven_artifacts:./example-springboot-service'
+            args '-v /var/jenkins_home/maven_artifacts:/example-springboot-service'
           }
         }
         steps {
