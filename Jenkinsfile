@@ -16,5 +16,5 @@ node('DOCKER-AGENT') {
 
       customImage.push(tagName)
     }
-}
+  }
 }
