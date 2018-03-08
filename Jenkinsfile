@@ -25,7 +25,10 @@ pipeline {
       }
       stage('Maven 3.5.2 Container') {
         agent {
-            docker { image 'maven:3.5.2' }
+          docker {
+            image 'maven:3.5.2'
+            args '-v /c/Users/msmith391/documents/Docker/Maven_Target:target'
+          }
         }
         steps {
             sh 'mvn --version'
@@ -34,3 +37,5 @@ pipeline {
       }
     }
 }
+
+//docker run -it --rm --name my-maven-project -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven maven:3.3.9-jdk-8 mvn clean install
