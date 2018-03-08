@@ -1,20 +1,43 @@
-node('DOCKER-AGENT') {
-  stage('Build Image'){
-    checkout scm
+// pipeline {
+//     agent {
+//         docker { image 'node:7-alpine' }
+//     }
+//     stages {
+//         stage('Test') {
+//             steps {
+//                 sh 'node --version'
+//             }
+//         }
+//     }
+// }
 
-    def docker_username_repositiry = "mrdeveloper/pipeline"
-    def tagName = env.BUILD_NUMBER
-    def dockerCreds = 'dockerRegistry'
 
-    docker.withRegistry('https://index.docker.io/v1/', dockerCreds) {
-      def customImage = docker.build("${docker_username_repositiry}:${env.BUILD_NUMBER}")
-
-      customImage.inside {
-          sh 'ls -al'
-          sh 'pwd'
+pipeline {
+  agent none
+    stages {
+      stage('Node 7 Container') {
+        agent {
+            docker { image 'node:7-alpine' }
+        }
+        steps {
+            sh 'node --version'
+        }
       }
-
-      customImage.push(tagName)
+      stage('Maven 3.5.2 Container') {
+        agent {
+          docker {
+            image 'maven:3.5.2'
+            args '-v /var/jenkins_home/maven_artifacts:/usr/src/mymaven -w /usr/src/mymaven'
+          }
+        }
+        steps {
+            sh 'mvn --version'
+            sh 'mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=1.0 -DBUILD_NUMBER=20'
+            sh 'ls example-springboot-service/target'
+            sh 'ls -R'
+        }
+      }
     }
-  }
 }
+
+//docker run -it --rm --name my-maven-project -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven maven:3.3.9-jdk-8 mvn clean install
