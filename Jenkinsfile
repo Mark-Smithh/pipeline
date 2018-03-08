@@ -27,14 +27,13 @@ pipeline {
         agent {
           docker {
             image 'maven:3.5.2'
-            //args '-v /var/jenkins_home/maven_artifacts:/example-springboot-service/target'
-            args '-v /example-springboot-service/target:/var/jenkins_home/maven_artifacts'
+            args '-v /var/jenkins_home/maven_artifacts:/example-springboot-service/target'
           }
         }
         steps {
             sh 'mvn --version'
             sh 'mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=1.0 -DBUILD_NUMBER=20'
-            sh 'ls -R'
+            sh 'ls /example-springboot-service/target'
         }
       }
     }
