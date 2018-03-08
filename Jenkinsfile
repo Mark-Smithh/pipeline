@@ -13,7 +13,7 @@ node('DOCKER-AGENT') {
           sh 'ls -al'
           sh 'pwd'
       }
-
+      customImage.push()
       customImage.push('latest')
     }
   }
