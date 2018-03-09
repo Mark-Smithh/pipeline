@@ -10,10 +10,9 @@
 //         }
 //     }
 // }
-
+def appVersion = '1.0'
+def buildNumber = env.BUILD_NUMBER
 pipeline {
-  def appVersion = '1.0'
-  def buildNumber = env.BUILD_NUMBER
   agent none
     stages {
       stage('Node 7 Container') {
