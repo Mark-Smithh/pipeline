@@ -5,9 +5,11 @@ def mavenGoals = 'clean install'
 def dockerImageName = 'maven:3.5.2'
 
 node('DOCKER-AGENT'){
-  checkout scm
-  sh 'ls -al'
-  sh "docker run --rm --name my-maven-project -v ${pwd()}:/usr/src/mymaven -w /usr/src/mymaven ${dockerImageName} mvn -f ${pomFileLocation} -DAPP_VERSION=${appVersion} -DBUILD_NUMBER=${buildNumber} ${mavenGoals}"
+  stage('Maven Build'){
+    checkout scm
+    sh 'ls -al'
+    sh "docker run --rm --name my-maven-project -v ${pwd()}:/usr/src/mymaven -w /usr/src/mymaven ${dockerImageName} mvn -f ${pomFileLocation} -DAPP_VERSION=${appVersion} -DBUILD_NUMBER=${buildNumber} ${mavenGoals}"
+  }
   //sh "mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=${appVersion} -DBUILD_NUMBER=${buildNumber}"//run this command inside Container
   //--rm will automatically remove the container when it exits
 }
