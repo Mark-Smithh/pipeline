@@ -1,15 +1,3 @@
-// pipeline {
-//     agent {
-//         docker { image 'node:7-alpine' }
-//     }
-//     stages {
-//         stage('Test') {
-//             steps {
-//                 sh 'node --version'
-//             }
-//         }
-//     }
-// }
 def appVersion = '1.0'
 def buildNumber = env.BUILD_NUMBER
 pipeline {
