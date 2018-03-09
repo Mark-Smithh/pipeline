@@ -6,7 +6,8 @@ def dockerImageName = 'maven:3.5.2'
 
 node('DOCKER-AGENT'){
   checkout scm
-  sh "docker run -it --rm --name my-maven-project -v ${pwd}:/usr/src/mymaven -w /usr/src/mymaven ${dockerImageName} mvn -f ${pomFileLocation} ${mavenGoals}"
+  sh "docker run --rm --name my-maven-project -v ${pwd}:/usr/src/mymaven -w /usr/src/mymaven ${dockerImageName} mvn -f ${pomFileLocation} ${mavenGoals}"
+  //--rm will automatically remove the container when it exits
 }
 
 // pipeline {
