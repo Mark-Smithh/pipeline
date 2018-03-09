@@ -27,15 +27,11 @@ pipeline {
         agent {
           docker {
             image 'maven:3.5.2' //pull Container from docker hub
-            //args "-v ${pwd}:/usr/src/mymaven -w /usr/src/mymaven"
           }
         }
         steps {
             sh 'mvn --version' //run this command inside Container
-            sh 'ls example-springboot-service'
             sh "mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=${appVersion} -DBUILD_NUMBER=${buildNumber}"//run this command inside Container
-            sh 'ls example-springboot-service/target' //run this command inside Container
-            sh 'ls -R' //run this command inside Container
         }
       }
     }
