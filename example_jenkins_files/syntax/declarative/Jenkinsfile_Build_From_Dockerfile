@@ -1,4 +1,6 @@
 //https://jenkins.io/doc/book/pipeline/syntax/#agent
+def appVersion = '1.0'
+def buildNumber = env.BUILD_NUMBER
 pipeline {
   agent none
     stages {
@@ -8,16 +10,16 @@ pipeline {
                 sh 'ls -al' //COMMAND RUN IN CONTAINER
             }
         }
-        stage('Dockerfile 2') {
+        stage('Maven Build') {
           agent{
             dockerfile {
-                dir 'maven3-1-1' //USE DOCKER FILE IN THIS FOLDER
+                dir 'maven3-5-2' //USE DOCKER FILE IN THIS FOLDER
                 label 'DOCKER-AGENT' //USE THIS JENKINS AGENT
               }
             }
             steps {
-                sh 'ls -al /usr/local/maven/bin' //COMMAND RUN IN CONTAINER
-                sh '/usr/local/maven/bin/mvn --version' //COMMAND RUN IN CONTAINER
+              sh 'mvn --version' //run this command inside Container
+              sh "mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=${appVersion} -DBUILD_NUMBER=${buildNumber}"//run this command inside Container
             }
         }
     }
