@@ -12,7 +12,6 @@
 // }
 
 pipeline {
-  def code =
   agent none
     stages {
       stage('Node 7 Container') {
