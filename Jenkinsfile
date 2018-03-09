@@ -12,6 +12,8 @@
 // }
 
 pipeline {
+  def appVersion = '1.0'
+  def buildNumber = env.BUILD_NUMBER
   agent none
     stages {
       stage('Node 7 Container') {
@@ -32,7 +34,7 @@ pipeline {
         steps {
             sh 'mvn --version' //run this command inside Container
             sh 'ls example-springboot-service'
-            sh 'mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=1.0 -DBUILD_NUMBER=20' //run this command inside Container
+            sh "mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=${appVersion} -DBUILD_NUMBER=${buildNumber}"//run this command inside Container
             sh 'ls example-springboot-service/target' //run this command inside Container
             sh 'ls -R' //run this command inside Container
         }
