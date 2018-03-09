@@ -31,7 +31,7 @@ pipeline {
         }
         steps {
             sh 'mvn --version' //run this command inside Container
-            sh 'ls /usr/src/mymaven'
+            sh 'ls example-springboot-service'
             sh 'mvn clean install -f example-springboot-service/pom.xml -DAPP_VERSION=1.0 -DBUILD_NUMBER=20' //run this command inside Container
             sh 'ls example-springboot-service/target' //run this command inside Container
             sh 'ls -R' //run this command inside Container
