@@ -26,7 +26,7 @@ pipeline {
         agent {
           docker {
             image 'maven:3.5.2' //pull Container from docker hub
-            args "-v ${pwd()}:/usr/src/mymaven -w /usr/src/mymaven"
+            args "-v ${pwd}:/usr/src/mymaven -w /usr/src/mymaven"
           }
         }
         steps {
